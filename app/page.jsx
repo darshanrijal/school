@@ -1,5 +1,4 @@
 import StudentDetailsForm from "@/components/StudentDetailsForm";
-import React from "react";
 
 const Home = () => {
   return (

@@ -6,6 +6,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+export const metadata = {
+  title: "About",
+  description: "About page",
+};
 const About = () => {
   return (
     <div className="mx-1 md:mx-5 md:mt-6">
