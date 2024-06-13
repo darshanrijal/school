@@ -10,13 +10,17 @@ const Login = () => {
 
   return (
     <div className="flex justify-center">
-      <form className="grid place-items-center gap-2 mt-6">
+      <form
+        className="grid place-items-center gap-2 mt-6"
+        onSubmit={(e) => e.preventDefault()}
+      >
         <Input
           type="text"
           name="username"
           id="username"
           placeholder="Enter the username"
           value={username}
+          required
           onChange={(e) => setUsername(e.target.value)}
         />
 
@@ -27,6 +31,7 @@ const Login = () => {
             id="password"
             placeholder="Enter the password"
             value={password}
+            required
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="grid place-items-center">
