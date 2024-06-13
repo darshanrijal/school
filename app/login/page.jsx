@@ -35,13 +35,15 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="grid place-items-center">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => setIsPassword(!isPassword)}
-            >
-              {isPassword ? "Show" : "Hide"}
-            </Button>
+            {password && (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setIsPassword(!isPassword)}
+              >
+                {isPassword ? "Show" : "Hide"}
+              </Button>
+            )}
           </div>
         </label>
         <Button type="submit">Submit</Button>
