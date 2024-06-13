@@ -25,7 +25,7 @@ const About = () => {
               What is this project made using?
             </AccordionTrigger>
             <AccordionContent>
-              The project is made using
+              The project is made using&nbsp;
               <a
                 href="http://nextjs.org"
                 target="_blank"
