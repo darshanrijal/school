@@ -8,7 +8,7 @@ const DashboardNav = () => {
       <ul className="flex justify-between items-center mx-6">
         <li className="font-medium text-xl">
           <Link
-            href={"/"}
+            href={"/dashboard"}
             className="hover:text-gray-500 transition-colors
           "
           >
