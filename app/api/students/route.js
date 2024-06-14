@@ -21,3 +21,13 @@ export async function POST(request) {
     return NextResponse.json({ error: `${error}` });
   }
 }
+export async function DELETE(request) {
+  const id = request.nextUrl.searchParams.get("id");
+  try {
+    await connectDB();
+    await Student.findByIdAndDelete(id);
+    return NextResponse.json({ message: "Student deleted" });
+  } catch (error) {
+    return NextResponse.json({ error: `${error}` });
+  }
+}
