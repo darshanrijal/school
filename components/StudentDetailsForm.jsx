@@ -13,7 +13,7 @@ const StudentDetailsForm = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetch("http://localhost:3000/api/students", {
+      await fetch(`/api/students`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
