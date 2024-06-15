@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     await connectDB();
-    const students = await Student.find();
+    const students = await Student.find().sort({ roll: 1 });
     return NextResponse.json({ students });
   } catch (error) {
     return NextResponse.json({ error: `${error}` });

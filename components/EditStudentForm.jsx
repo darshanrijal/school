@@ -10,7 +10,7 @@ const EditStudent = ({ id, name, roll }) => {
   async function handleFormSubmit(e) {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3000/api/students/${id}`, {
+      const res = await fetch(`/api/students/${id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
@@ -18,7 +18,7 @@ const EditStudent = ({ id, name, roll }) => {
         body: JSON.stringify({ newName, newRoll }),
       });
       if (!res.ok) {
-        throw new Error("Cannot fetch");
+        alert("Cannot fetch");
       }
       router.push("/dashboard");
     } catch (error) {
@@ -36,7 +36,7 @@ const EditStudent = ({ id, name, roll }) => {
             type="text"
             name="name"
             id="name"
-            className="font-semibold"
+            className="font-medium"
             placeholder="Update student name"
             value={newName}
             required
@@ -46,7 +46,7 @@ const EditStudent = ({ id, name, roll }) => {
             type="number"
             name="roll"
             id="roll"
-            className="font-semibold"
+            className="font-medium"
             placeholder="Update student roll"
             value={newRoll}
             required

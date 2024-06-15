@@ -12,7 +12,7 @@ const Contact = () => {
   async function handleMessageSubmit(e) {
     e.preventDefault();
     try {
-      await fetch("http://localhost:3000/api/messages", {
+      await fetch("/api/messages", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
