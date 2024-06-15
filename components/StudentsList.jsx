@@ -7,7 +7,6 @@ import Link from "next/link";
 
 const StudentsList = () => {
   const [students, setStudents] = useState([]);
-
   async function getStudents() {
     try {
       const res = await fetch("http://localhost:3000/api/students", {
