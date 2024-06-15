@@ -4,10 +4,10 @@ import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 import { poppins } from "./ui/fonts";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+
 const StudentsList = () => {
-  const router = useRouter();
   const [students, setStudents] = useState([]);
+
   async function getStudents() {
     try {
       const res = await fetch("http://localhost:3000/api/students", {
@@ -22,9 +22,11 @@ const StudentsList = () => {
       alert(error);
     }
   }
+
   useEffect(() => {
     getStudents();
   }, []);
+
   return (
     <div className="grid gap-2">
       {students.map((student) => {
@@ -52,7 +54,7 @@ const StudentsList = () => {
                     await fetch(`/api/students?id=${student._id}`, {
                       method: "DELETE",
                     });
-                    confirmed && router.push("/dashboard");
+                    getStudents(); // Fetch the updated list after deletion
                   }
                 }}
               >
