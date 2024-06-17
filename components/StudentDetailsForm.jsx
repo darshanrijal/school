@@ -20,28 +20,28 @@ const StudentDetailsForm = () => {
       });
       return;
     }
-    const checkStudent = await fetch("/api/checkstudent", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ roll }),
-    });
-    const { exists } = await checkStudent.json();
-    if (exists) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Student already exists with that roll",
-      });
-      return;
-    }
-
     try {
+      const checkStudent = await fetch("/api/checkstudent", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ roll }),
+      });
+      const { exists } = await checkStudent.json();
+      if (exists) {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "Student already exists with that roll",
+        });
+        return;
+      }
+
       await fetch(`/api/students`, {
         method: "POST",
         headers: {
-          "Content-type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ name, roll }),
       });
@@ -49,13 +49,14 @@ const StudentDetailsForm = () => {
       setRoll("");
       toast({
         title: "Added",
-        description: "Student has been added to database",
+        description: "Student has been added to the database",
       });
     } catch (error) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: "Database occured a problem check console for details",
+        description:
+          "Database encountered a problem. Check console for details",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
       console.error(error);
@@ -72,7 +73,6 @@ const StudentDetailsForm = () => {
           type="text"
           name="name"
           id="name"
-          className=""
           placeholder="Enter student name"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -81,7 +81,6 @@ const StudentDetailsForm = () => {
           type="number"
           name="roll"
           id="roll"
-          className=""
           placeholder="Enter student roll"
           value={roll}
           min={1}
