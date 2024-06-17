@@ -20,6 +20,23 @@ const StudentDetailsForm = () => {
       });
       return;
     }
+    const checkStudent = await fetch("/api/checkstudent", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ roll }),
+    });
+    const { exists } = await checkStudent.json();
+    if (exists) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Student already exists with that roll",
+      });
+      return;
+    }
+
     try {
       await fetch(`/api/students`, {
         method: "POST",
