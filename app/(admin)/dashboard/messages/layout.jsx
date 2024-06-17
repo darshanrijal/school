@@ -1,9 +1,6 @@
 import React from "react";
 import { roboto } from "@/components/ui/fonts";
 import { Button } from "@/components/ui/button";
-export const metadata = {
-  title: "Messages",
-};
 export default function MessageLayout({ children }) {
   return (
     <div>
