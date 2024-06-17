@@ -12,6 +12,14 @@ const StudentDetailsForm = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    if (!name || !roll) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please fill in all fields",
+      });
+      return;
+    }
     try {
       await fetch(`/api/students`, {
         method: "POST",
@@ -50,7 +58,6 @@ const StudentDetailsForm = () => {
           className=""
           placeholder="Enter student name"
           value={name}
-          required
           onChange={(e) => setName(e.target.value)}
         />
         <Input
@@ -60,7 +67,6 @@ const StudentDetailsForm = () => {
           className=""
           placeholder="Enter student roll"
           value={roll}
-          required
           min={1}
           max={999}
           onChange={(e) => setRoll(e.target.value)}
