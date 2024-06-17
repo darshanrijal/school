@@ -7,7 +7,8 @@ const Dashboard = () => {
   return (
     <div className="grid gap-3">
       <h1 className="text-center font-semibold">
-        Students List | <Link href={"dashboard/add"}>Add More</Link>
+        Students List | <Link href={"/dashboard/add"}>Add More</Link> |{" "}
+        <Link href={"/dashboard/messages"}>View Messages</Link>
       </h1>
       <div className="flex justify-center">
         <Suspense fallback={<StudentLoadingSkeleton />}>
