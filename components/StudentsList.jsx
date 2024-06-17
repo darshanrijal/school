@@ -7,13 +7,16 @@ import StudentLoadingSkeleton from "./StudentLoadingSkeleton";
 
 const StudentsList = () => {
   const [students, setStudents] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
 
   async function getStudents() {
     try {
-      const res = await fetch("/api/students", {
-        cache: "no-store",
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/students`,
+        {
+          cache: "no-store",
+        }
+      );
       if (!res.ok) {
         throw new Error("Error fetching data");
       }
@@ -22,7 +25,7 @@ const StudentsList = () => {
     } catch (error) {
       alert(error);
     } finally {
-      setLoading(false); // Update loading state
+      setLoading(false);
     }
   }
 
@@ -35,7 +38,7 @@ const StudentsList = () => {
       <div className="grid place-items-center">
         <StudentLoadingSkeleton />
       </div>
-    ); // Show loading state
+    );
   }
 
   return (
@@ -61,10 +64,10 @@ const StudentsList = () => {
               onClick={async () => {
                 const confirmed = confirm("Are you sure?");
                 if (confirmed) {
-                  await fetch(`/api/students?id=${student._id}`, {
+                  await fetch(`/api/students/${student._id}`, {
                     method: "DELETE",
                   });
-                  getStudents(); // Fetch the updated list after deletion
+                  getStudents();
                 }
               }}
             >

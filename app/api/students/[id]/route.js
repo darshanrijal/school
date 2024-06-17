@@ -5,12 +5,30 @@ import { NextResponse } from "next/server";
 export async function PUT(request, { params }) {
   const { id } = params;
   try {
-    const { newName: name, newRoll: roll } = await request.json();
+    const { name, roll } = await request.json();
+
+    if (!name || !roll) {
+      return NextResponse.json(
+        { error: "Name and Roll are required fields" },
+        { status: 400 }
+      );
+    }
+
     await connectDB();
-    await Student.findByIdAndUpdate(id, { name, roll });
-    return NextResponse.json({ message: "Student updated" });
+
+    const updatedStudent = await Student.findByIdAndUpdate(
+      id,
+      { name, roll },
+      { new: true }
+    );
+
+    if (!updatedStudent) {
+      return NextResponse.json({ error: "Student not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: "Student updated successfully" });
   } catch (error) {
-    return NextResponse.json({ error: `${error}` });
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
 

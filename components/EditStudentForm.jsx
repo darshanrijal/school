@@ -21,6 +21,7 @@ const EditStudent = ({ id, name, roll }) => {
       });
       return;
     }
+
     try {
       const res = await fetch(`/api/students/${id}`, {
         method: "PUT",
@@ -29,14 +30,17 @@ const EditStudent = ({ id, name, roll }) => {
         },
         body: JSON.stringify({ name: newName, roll: newRoll }),
       });
+
       if (!res.ok) {
+        const errorData = await res.json();
         toast({
           variant: "destructive",
           title: "Error",
-          description: "Failed to update student",
+          description: errorData.error || "Failed to update student",
         });
         return;
       }
+
       toast({
         variant: "success",
         title: "Success",
