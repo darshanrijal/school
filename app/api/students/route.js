@@ -23,11 +23,18 @@ export async function POST(request) {
 }
 export async function DELETE(request) {
   const id = request.nextUrl.searchParams.get("id");
+
   try {
     await connectDB();
-    await Student.findByIdAndDelete(id);
-    return NextResponse.json({ message: "Student deleted" });
+
+    const deletedStudent = await Student.findByIdAndDelete(id);
+
+    if (!deletedStudent) {
+      return NextResponse.json({ error: "Student not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: "Student deleted successfully" });
   } catch (error) {
-    return NextResponse.json({ error: `${error}` });
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

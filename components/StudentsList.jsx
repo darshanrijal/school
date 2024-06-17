@@ -4,10 +4,12 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import { poppins } from "./ui/fonts";
 import Link from "next/link";
 import StudentLoadingSkeleton from "./StudentLoadingSkeleton";
+import { useToast } from "@/components/ui/use-toast";
 
 const StudentsList = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
 
   async function getStudents() {
     try {
@@ -23,9 +25,40 @@ const StudentsList = () => {
       const data = await res.json();
       setStudents(data.students);
     } catch (error) {
-      alert(error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to fetch students",
+      });
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function deleteStudent(id) {
+    try {
+      const res = await fetch(`/api/students?id=${id}`, {
+        method: "DELETE",
+      });
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.error || "Error deleting student");
+      }
+
+      toast({
+        variant: "success",
+        title: "Success",
+        description: "Student deleted successfully",
+      });
+
+      getStudents(); // Fetch the updated list after deletion
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message || "Failed to delete student",
+      });
     }
   }
 
@@ -64,10 +97,7 @@ const StudentsList = () => {
               onClick={async () => {
                 const confirmed = confirm("Are you sure?");
                 if (confirmed) {
-                  await fetch(`/api/students/${student._id}`, {
-                    method: "DELETE",
-                  });
-                  getStudents();
+                  await deleteStudent(student._id);
                 }
               }}
             >
