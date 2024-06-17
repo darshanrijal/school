@@ -31,7 +31,11 @@ const StudentsList = () => {
   }, []);
 
   if (loading) {
-    return <StudentLoadingSkeleton />; // Show loading state
+    return (
+      <div className="grid place-items-center">
+        <StudentLoadingSkeleton />
+      </div>
+    ); // Show loading state
   }
 
   return (
