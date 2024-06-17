@@ -40,7 +40,7 @@ const About = () => {
             <AccordionTrigger>What is this project about?</AccordionTrigger>
             <AccordionContent>
               This project is about school management system, student records,
-              marks are recorded and stored
+              khai k k k
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
