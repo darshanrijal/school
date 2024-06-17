@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useToast } from "./ui/use-toast";
 import Checkmark from "./Checkmark";
+import StudentLoadingSkeleton from "./StudentLoadingSkeleton";
 
 const StudentMessagesList = () => {
   const { toast } = useToast();
@@ -45,7 +46,11 @@ const StudentMessagesList = () => {
   }
 
   if (loading) {
-    return <code>Loading...</code>;
+    return (
+      <div className="grid place-items-center">
+        <StudentLoadingSkeleton />
+      </div>
+    );
   }
   if (messages.length === 0) {
     return (
