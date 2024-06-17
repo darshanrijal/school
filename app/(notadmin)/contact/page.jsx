@@ -4,13 +4,20 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-
 const Contact = () => {
   const { toast } = useToast();
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   async function handleMessageSubmit(e) {
     e.preventDefault();
+    if (!name || !message) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Enter every fields",
+      });
+      return;
+    }
     try {
       await fetch("/api/messages", {
         method: "POST",
@@ -49,7 +56,6 @@ const Contact = () => {
           placeholder="Enter your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          required
         />
         <Input
           type="textarea"
@@ -57,7 +63,6 @@ const Contact = () => {
           id="message"
           className=""
           placeholder="Leave your message"
-          required
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
