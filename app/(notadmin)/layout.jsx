@@ -11,13 +11,9 @@ export const metadata = {
 };
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <NextTopLoader showSpinner={false} color="#708090" />
-        <Navbar />
-        {children}
-        <Toaster />
-      </body>
-    </html>
+    <div>
+      <Navbar />
+      {children}
+    </div>
   );
 }
