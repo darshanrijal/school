@@ -25,7 +25,7 @@ const Navbar = () => {
     },
   ];
   return (
-    <nav className="sticky top-0 shadow-md p-2 backdrop-blur-sm ">
+    <nav className="sticky top-0 shadow-md p-2 backdrop-blur-sm bg-white/25 ">
       <ul className="flex justify-between items-center mx-4">
         <li
           className={`${poppins.className} text-xl font-medium hover:text-gray-500 transition-colors cursor-pointer`}

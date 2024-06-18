@@ -3,7 +3,7 @@ import { poppins } from "./ui/fonts";
 const DashboardNav = () => {
   return (
     <nav
-      className={`sticky ${poppins.className} top-0  list-none backdrop-blur-sm shadow-md w-screen p-2`}
+      className={`sticky ${poppins.className} top-0  list-none backdrop-blur-sm shadow-md w-screen p-2 bg-white/25`}
     >
       <ul className="flex justify-between items-center mx-6">
         <li className="font-medium text-xl">
