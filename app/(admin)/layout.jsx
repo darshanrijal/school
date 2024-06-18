@@ -1,5 +1,5 @@
 import DashboardNav from "@/components/DashboardNav";
-import "@/app/globals.css";
+
 import { Inter } from "next/font/google";
 export const metadata = {
   title: "Dashboard",
