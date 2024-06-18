@@ -55,12 +55,17 @@ const StudentMessagesList = () => {
   }
   if (messages.length === 0) {
     return (
-      <code className="grid place-items-center my-60">No messages found</code>
+      <div className="grid place-items-center">
+        <Button onClick={getMessages} variant="outline">
+          Refresh
+        </Button>
+        <code className="my-40">No messages found</code>
+      </div>
     );
   }
 
   return (
-    <div className="grid place-items-center gap-1">
+    <div className="grid place-items-center gap-3">
       <Button onClick={getMessages} variant="outline">
         Refresh
       </Button>
