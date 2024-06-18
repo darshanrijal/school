@@ -86,7 +86,7 @@ const EditStudent = ({ id, name, roll }) => {
         </form>
       </div>
     </div>
-  );
+  );  
 };
 
 export default EditStudent;

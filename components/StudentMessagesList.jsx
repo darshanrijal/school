@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useToast } from "./ui/use-toast";
 import Checkmark from "./Checkmark";
 import StudentLoadingSkeleton from "./StudentLoadingSkeleton";
+import { Button } from "./ui/button";
 
 const StudentMessagesList = () => {
   const { toast } = useToast();
@@ -57,8 +58,12 @@ const StudentMessagesList = () => {
       <code className="grid place-items-center my-60">No messages found</code>
     );
   }
+
   return (
     <div className="grid place-items-center gap-1">
+      <Button onClick={getMessages} variant="outline">
+        Refresh
+      </Button>
       {messages.map((message) => (
         <div
           className="flex flex-col w-full max-w-md p-2 border-slate-500 rounded border-2"
