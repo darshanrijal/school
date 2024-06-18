@@ -13,12 +13,9 @@ const StudentsList = () => {
 
   async function getStudents() {
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/students`,
-        {
-          cache: "no-store",
-        }
-      );
+      const res = await fetch(`/api/students`, {
+        cache: "no-store",
+      });
       if (!res.ok) {
         throw new Error("Error fetching data");
       }
